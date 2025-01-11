@@ -158,7 +158,7 @@ def save_chunks_to_db(
         port=chroma_db_port
     )
     collection = client.get_or_create_collection(name=collection_name)
-    tms_now = datetime.now(timezone.utc).strftime("%d %B %Y %H:%M:%S")
+    tms_now = datetime.now(timezone.utc).strftime("%d %B %Y %H:%M:%S %Z %z")
     collection.add(
         ids=[str(uuid5(NAMESPACE_DNS, chunk)) for chunk in chunks],
         embeddings=get_embedding(list_text=chunks),

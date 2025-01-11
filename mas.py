@@ -9,6 +9,8 @@ from autogen import (
     GroupChatManager, 
     register_function
 )
+from datetime import datetime, timezone
+from json import dump
 from dotenv import load_dotenv
 from prompts import (
     SYSTEM_PROMPT_AGENT_INGESTION, DESCRIPTION_AGENT_INGESTION, 
@@ -126,8 +128,11 @@ group_chat_manager = GroupChatManager(
 
 if __name__ == "__main__":
     msg = input("You initial query: ")
-    human.initiate_chat(
+    chat_results = human.initiate_chat(
         group_chat_manager, 
         message=msg, 
         summary_method="last_msg",
     )
+    tms_now = datetime.now(timezone.utc).strftime("%d_%B_%Y_%H_%M_%S_%Z_%z")
+    with open("chat_logs/%s.json" % (tms_now), "w") as f:
+        dump(chat_results.chat_history, f, indent=4)
