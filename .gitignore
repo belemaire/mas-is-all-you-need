@@ -169,3 +169,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# cachier
+/.cachier
+
+# chroma
+/.chroma
+
+# DS_Store
+.DS_Store
