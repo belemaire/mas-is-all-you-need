@@ -1,0 +1,3 @@
+#!/bin/bash 
+
+chroma run --path .chroma --host localhost --port 8001 
