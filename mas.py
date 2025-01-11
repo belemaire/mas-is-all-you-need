@@ -1,3 +1,6 @@
+from warnings import filterwarnings
+filterwarnings("ignore", message="flaml.automl is not available.*")
+
 import os
 from autogen import (
     Agent, 
@@ -19,7 +22,6 @@ from tools_retrieve import retrieve_str
 
 load_dotenv()
 
-
 llm_config = {
     "config_list": [
         {
@@ -31,12 +33,10 @@ llm_config = {
     ]
 }
 
-
 human = ConversableAgent(
     name = "human",
     system_message = '',
     description = "You are a human user.",
-    llm_config = llm_config,
     human_input_mode = "ALWAYS",
 )
 
