@@ -156,11 +156,7 @@ def save_chunks_to_db(
         host=chroma_db_host, 
         port=chroma_db_port
     )
-    try:
-        client.create_collection(name=collection_name)
-    except Exception as e:
-        print("Failed to create collection %s. %s" % (collection_name, e))
-    collection = client.get_collection(name=collection_name)
+    collection = client.get_or_create_collection(name=collection_name)
     collection.add(
         ids=[str(uuid5(NAMESPACE_DNS, chunk)) for chunk in chunks],
         embeddings=get_embedding(list_text=chunks),
