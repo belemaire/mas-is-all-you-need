@@ -1,0 +1,12 @@
+#!/bin/bash 
+
+python tools_ingestion.py --path kb/cities/america/berkeley.txt --reset True
+python tools_ingestion.py --path kb/cities/america/chicago.txt --reset False
+python tools_ingestion.py --path kb/cities/america/philadelphia.txt --reset False
+
+python tools_ingestion.py --path kb/cities/asia/osaka.txt --reset False
+python tools_ingestion.py --path kb/cities/asia/seoul.txt --reset False
+
+python tools_ingestion.py --path kb/cities/europe/amsterdam.txt --reset False
+python tools_ingestion.py --path kb/cities/europe/barcelona.txt --reset False
+# python tools_ingestion.py --path kb/europe/turin.txt --reset False

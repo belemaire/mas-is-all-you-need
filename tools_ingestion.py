@@ -9,6 +9,7 @@ from uuid import uuid5, NAMESPACE_DNS
 from dotenv import load_dotenv
 from argparse import ArgumentParser
 from cachier import cachier
+from json import dumps
 from prompts import PROMPT_TEXT_CHUNKING
 
 
@@ -158,7 +159,7 @@ def save_chunks_to_db(
     try:
         client.create_collection(name=collection_name)
     except Exception as e:
-        print("Failed to create collection %s. Error: %s" % (collection_name, e))
+        print("Failed to create collection %s. %s" % (collection_name, e))
     collection = client.get_collection(name=collection_name)
     collection.add(
         ids=[str(uuid5(NAMESPACE_DNS, chunk)) for chunk in chunks],
@@ -204,10 +205,10 @@ def delete_collection(
         client.delete_collection(name=collection_name)
         print("Collection %s deleted successfully." % collection_name)
     except Exception as e:
-        print("Failed to create collection %s. Error: %s" % (collection_name, e))
+        print("Failed to delete collection %s. %s" % (collection_name, e))
 
 
-def path_to_db(path : str) -> None:
+def path_to_db(path : str) -> str:
     """
     Process a text file and save its chunks to a database.
 
@@ -222,17 +223,18 @@ def path_to_db(path : str) -> None:
         path (str): The file path of the text file to be processed and saved.
 
     Returns:
-        None
+        str: Saved chunks.
     """
     load_dotenv()
     text = get_txt_file_content(path=path)
     text_chunks = process_text(text=text)
     list_chunks = text_to_list(text=text_chunks)
     save_chunks_to_db(chunks=list_chunks, chunks_source=path)
-    print("File chunked and saved to DB.")
+    print("File %s chunked and saved to DB." % (path))
+    return dumps(list_chunks, indent=4)
 
 
-def text_to_db(text : str) -> None:
+def text_to_db(text : str) -> str:
     """
     Process a given text and save its chunks to a database.
 
@@ -246,13 +248,14 @@ def text_to_db(text : str) -> None:
         text (str): The input text to be processed and saved.
 
     Returns:
-        None
+        str: Saved chunks.
     """
     load_dotenv()
     text_chunks = process_text(text=text)
     list_chunks = text_to_list(text=text_chunks)
     save_chunks_to_db(chunks=list_chunks, chunks_source="")
     print("Text chunked and saved to DB.")
+    return dumps(list_chunks, indent=4)
 
 
 if __name__ == "__main__":
@@ -263,11 +266,11 @@ if __name__ == "__main__":
         '--path', type=str, help='The path of the txt file', required=True
     )
     parser.add_argument(
-        '--reset', type=str, help='Reset the collection.', default=False, 
+        '--reset', type=str, help='Reset the collection.', default="False", 
     )
     args = parser.parse_args()
     load_dotenv()
-    if args.reset:
+    if str(args.reset) == "True":
         print("Deleting the collection before starting.")
         delete_collection()
     path_to_db(path=args.path)
