@@ -71,6 +71,7 @@ def retrieve(
                 "uuid": uuid, 
                 "distance": distance, 
                 "source": mtdt['chunk_source'], 
+                "last_update": mtdt['last_update'], 
                 "chunk": chunk
             }
         )

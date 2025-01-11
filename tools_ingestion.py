@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from argparse import ArgumentParser
 from cachier import cachier
 from json import dumps
+from datetime import datetime, timezone
 from prompts import PROMPT_TEXT_CHUNKING
 
 
@@ -157,11 +158,15 @@ def save_chunks_to_db(
         port=chroma_db_port
     )
     collection = client.get_or_create_collection(name=collection_name)
+    tms_now = datetime.now(timezone.utc).strftime("%d %B %Y %H:%M:%S")
     collection.add(
         ids=[str(uuid5(NAMESPACE_DNS, chunk)) for chunk in chunks],
         embeddings=get_embedding(list_text=chunks),
         documents=chunks, 
-        metadatas=[{'chunk_source': chunks_source} for _ in range(len(chunks))]
+        metadatas=[
+            {'chunk_source': chunks_source, "last_update": tms_now} \
+            for _ in range(len(chunks))
+        ]
     )
 
 
