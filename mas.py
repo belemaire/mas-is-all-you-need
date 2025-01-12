@@ -164,9 +164,9 @@ agent_router.register_nested_chats(
 
 
 if __name__ == "__main__":
-    chat_results = agent_router.initiate_chat(
-        human, 
-        message="Ciao! How can I assist you today? 😊", 
+    chat_results = human.initiate_chat(
+        agent_router, 
+        message=input("Ciao! How can I assist you today? 😊 : "), 
         max_turns = 100
     )
     tms_now = datetime.now(timezone.utc).strftime("%d_%B_%Y_%H_%M_%S_%Z_%z")
