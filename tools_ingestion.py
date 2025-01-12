@@ -4,7 +4,6 @@ from aisuite import Client as aisuite_client # type: ignore
 from openai import OpenAI # type: ignore
 from typing import List
 from chromadb import HttpClient as chromadb_http_client # type: ignore
-from tqdm import tqdm # type: ignore
 from uuid import uuid5, NAMESPACE_DNS
 from dotenv import load_dotenv # type: ignore
 from argparse import ArgumentParser
