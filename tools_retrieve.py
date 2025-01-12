@@ -110,8 +110,8 @@ if __name__ == "__main__":
         '--query', type=str, help='Your query.', required=True
     )
     parser.add_argument(
-        '--n_results', type=str, help='Number of returned results.', default=10
+        '--n_results', type=str, help='Number of returned results.', default=3
     )
     args = parser.parse_args()
     load_dotenv()
-    print(retrieve_str(query=args.query, n_results=args.n_results))
+    print(retrieve_str(query=args.query, n_results=int(args.n_results)))
