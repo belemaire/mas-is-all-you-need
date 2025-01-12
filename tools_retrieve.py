@@ -1,10 +1,10 @@
 import os
 from typing import List, Dict, Union
-from chromadb import HttpClient as chromadb_http_client
-from dotenv import load_dotenv
+from chromadb import HttpClient as chromadb_http_client # type: ignore
+from dotenv import load_dotenv # type: ignore
 from json import dumps
 from argparse import ArgumentParser
-from cachier import cachier
+from cachier import cachier # type: ignore
 from tools_ingestion import get_embedding
 
 

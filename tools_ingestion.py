@@ -1,14 +1,14 @@
 import re
 import os
-from aisuite import Client as aisuite_client
-from openai import OpenAI
+from aisuite import Client as aisuite_client # type: ignore
+from openai import OpenAI # type: ignore
 from typing import List
-from chromadb import HttpClient as chromadb_http_client
-from tqdm import tqdm
+from chromadb import HttpClient as chromadb_http_client # type: ignore
+from tqdm import tqdm # type: ignore
 from uuid import uuid5, NAMESPACE_DNS
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore
 from argparse import ArgumentParser
-from cachier import cachier
+from cachier import cachier # type: ignore
 from json import dumps
 from datetime import datetime, timezone
 from prompts import PROMPT_TEXT_CHUNKING
