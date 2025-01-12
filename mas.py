@@ -29,7 +29,7 @@ load_dotenv()
 llm_config = {
     "config_list": [
         {
-            "model": "gpt-4o", 
+            "model": "gpt-4o-mini", 
             "api_key": os.environ["OPENAI_API_KEY"], 
             "temperature": 0.7,
             # "cache_seed": None
