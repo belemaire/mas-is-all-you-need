@@ -4,11 +4,9 @@ from chromadb import HttpClient as chromadb_http_client # type: ignore
 from dotenv import load_dotenv # type: ignore
 from json import dumps
 from argparse import ArgumentParser
-from cachier import cachier # type: ignore
 from tools_ingestion import get_embedding
 
 
-@cachier(cache_dir='.cachier')
 def retrieve(
     query : str, 
     n_results : int = 10,
