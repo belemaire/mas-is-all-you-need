@@ -1,5 +1,9 @@
 # MAS is all you need: supercharge your Retrieval-Augmented Generation (RAG) with Multi-Agent Systems
 
+How to build a Multi-Agent RAG with AG2 and ChromaDB
+Check the [Medium article](https://towardsdatascience.com/mas-is-all-you-need-f61f6e6f3aad) for the technical details.
+
+
 ## Python env creation
 
 ```bash
