@@ -5,6 +5,17 @@ How to build a Multi-Agent RAG with AG2 and ChromaDB.
 Check the [Medium article](https://towardsdatascience.com/mas-is-all-you-need-f61f6e6f3aad) for the technical details.
 
 
+## Local env creation
+
+Create a `.env` file at the root, with the following:
+
+```
+OPENAI_API_KEY="<key>"
+CHROMA_DB_HOST="localhost"
+CHROMA_DB_PORT=8001
+```
+
+
 ## Python env creation
 
 ```bash

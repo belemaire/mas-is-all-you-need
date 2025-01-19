@@ -175,6 +175,7 @@ cython_debug/
 
 # chroma
 /.chroma
+chroma
 
 # DS_Store
 .DS_Store
